@@ -12,14 +12,6 @@
 
 
 
-
-#function.py
-def countCouponsFree
-#MAKE ONE OF THESE to count row[0] which will be false or true. if true it is free
-universityList = list() #empty list
-#take out all the spaces padding the name
-for row in cursor:
-    
-    universityList.append(row.University.rstrip(" "))
-print(universityList)
+#make one of these to count how many are BOGO so row[2]
+def countBOGO
 
