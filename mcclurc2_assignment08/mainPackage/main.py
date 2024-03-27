@@ -22,14 +22,17 @@ conn = pyodbc.connect('Driver={SQL Server};'
 
 cursor = conn.cursor()
 
-cursor.execute('SELECT dbo.tDiscountType.IsFree, dbo.tCoupon.Coupon, dbo.tDiscountType.DiscountType\
-                FROM  dbo.tCoupon INNER JOIN\
-                dbo.tCouponDetail ON dbo.tCoupon.CouponID = dbo.tCouponDetail.CouponID INNER JOIN\
-                dbo.tCouponSource ON dbo.tCoupon.CouponSourceID = dbo.tCouponSource.CouponSourceID INNER JOIN\
-                dbo.tDiscountType ON dbo.tCouponDetail.DiscountTypeID = dbo.tDiscountType.DiscountTypeID')
+cursor.execute('SELECT dbo.tDiscountType.IsFree,\
+                COUNT(dbo.tCoupon.Coupon) AS Expr1, dbo.tDiscountType.DiscountType, dbo.tDiscountType.IsPercentageDiscount, dbo.tDiscountType.DiscountTypeID\
+                FROM  dbo.tCoupon\
+                INNER JOIN dbo.tCouponDetail ON dbo.tCoupon.CouponID = dbo.tCouponDetail.CouponID\
+                INNER JOIN dbo.tCouponSource ON dbo.tCoupon.CouponSourceID = dbo.tCouponSource.CouponSourceID\
+                INNER JOIN dbo.tDiscountType ON dbo.tCouponDetail.DiscountTypeID = dbo.tDiscountType.DiscountTypeID\
+                GROUP BY dbo.tDiscountType.IsFree, dbo.tDiscountType.DiscountType, dbo.tDiscountType.IsPercentageDiscount, dbo.tDiscountType.DiscountTypeID')
 for row in cursor:
     print(row[0])
     print(row[1])
     print(row[2])
+    #print(row[3])
     
 
