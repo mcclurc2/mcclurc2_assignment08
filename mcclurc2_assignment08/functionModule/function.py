@@ -14,12 +14,15 @@
 
 
 #function.py
-def countCouponsFree
-#MAKE ONE OF THESE to count row[0] which will be false or true. if true it is free
-universityList = list() #empty list
-#take out all the spaces padding the name
-for row in cursor:
-    
-    universityList.append(row.University.rstrip(" "))
-print(universityList)
-
+#function,py
+def countCouponsFree(cursor):
+    '''
+    Counts the number of rows where the value under IsFree is false
+    cursor: Cursor object containing the result set
+    returns: number of rows with false under IsFree 
+    '''
+    rows = cursor.fetchall()
+    false_count = len(rows)
+    print("Number of rows with False under IsFree", false_count)
+    # return the count of rows with false under IsFree
+    return false_count
