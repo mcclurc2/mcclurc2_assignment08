@@ -13,5 +13,12 @@
 
 
 #make one of these to count how many are BOGO so row[2]
-def countBOGO
-
+def whatTypeCoupon(cursor):
+    '''
+    to find what type of coupon popping up. hopes to find BOGO
+    return: BOGO from the from rows
+    '''
+    rows = cursor.fetchall()
+    bogo_coupon_codes = [row[1] for row in rows if 'BOGO' in row[2]]
+    return bogo_coupon_codes
+    print(bogo_coupon_codes)
