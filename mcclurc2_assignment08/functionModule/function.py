@@ -25,5 +25,4 @@ def countCouponsFree(cursor):
 
     # Return the count of rows with False under IsFree
     return false_count
-    
 
